@@ -37,6 +37,12 @@ body {
     position: sticky;
     top: 3rem;
     height: fit-content;
+    align-self: start;
+}
+
+/* 右侧栏样式 */
+.right-column {
+    overflow-y: auto;
 }
 
 /* 个人信息样式 */
@@ -137,8 +143,8 @@ body {
 }
 
 .social-icon {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
     font-size: 2rem;
     color: var(--primary-color);
     display: flex;
@@ -210,11 +216,13 @@ img {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4rem;
+    grid-template-columns: repeat(auto-fill, 200px);
+    gap: 2rem;
+    justify-content: center;
 }
 
 .portfolio-item {
+    width: 200px;
     display: flex;
     flex-direction: column;
     background: none;
@@ -222,60 +230,55 @@ img {
 }
 
 .portfolio-image {
-    width: 100%;
-    height: 80px;
+    width: 200px;
+    height: 100px;
     object-fit: cover;
+    object-position: center;
     border-radius: 6px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .portfolio-item h3 {
+    width: 200px;
     font-size: 1.1rem;
     font-weight: 500;
     color: var(--primary-color);
     margin-bottom: 0.6rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
 .portfolio-item p {
+    width: 200px;
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--secondary-color);
     margin-bottom: 1rem;
-    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-align: left;
 }
 
-.view-project {
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0;
-    align-self: flex-start;
-}
-
-.view-project:hover {
-    color: var(--hover-color);
-    text-decoration: none;
-}
-
-.portfolio-item:hover {
-    opacity: 1;
-}
-
-.portfolio-item:hover .portfolio-image {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
+.portfolio-item:hover h3,
+.portfolio-item:hover p {
+    white-space: normal;
+    overflow: visible;
+    -webkit-line-clamp: unset;
 }
 
 /* 响应式优化 */
 @media (max-width: 768px) {
     .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+        grid-template-columns: repeat(auto-fill, 150px);
     }
     
     .portfolio-image {
-        height: 100px;
+        height: 80px;
     }
     
     .portfolio-item h3 {
@@ -321,10 +324,11 @@ img {
 
 .project-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 200px);
     gap: 40px;
     padding: 0;
     width: 100%;
+    justify-content: left;
 }
 
 .project {
@@ -332,32 +336,33 @@ img {
     cursor: pointer;
     transition: transform 0.3s ease;
     padding: 0;
-    width: 100%;
-}
-
-.project:hover {
-    transform: translateY(-5px);
+    width: 200px;
 }
 
 /* 调整图片尺寸 */
 .project img {
-    width: 100px;
+    width: 200px;
     height: 100px;
     object-fit: cover;
+    object-position: center;
     border-radius: 8px;
-    margin: 0 auto;
     display: block;
 }
 
 .project h3 {
+    width: 200px;
     margin-top: 12px;
     margin-bottom: 8px;
-    text-align: center;
+    text-align: left;
     font-size: 1.1rem;
     color: var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .project-desc {
+    width: 200px;
     font-size: 0.9rem;
     color: var(--secondary-color);
     line-height: 1.5;
@@ -367,13 +372,20 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
-    text-align: center;
+    text-align: left;
+}
+
+.project:hover h3,
+.project:hover .project-desc {
+    white-space: normal;
+    overflow: visible;
+    -webkit-line-clamp: unset;
 }
 
 /* 响应式调整 */
 @media (max-width: 768px) {
     .project-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 200px);
         gap: 30px;
     }
 }
@@ -384,14 +396,22 @@ img {
     }
 }
 
-.social-icon img,
+.social-icon img{
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
 .contact-icon img:not(.qr-code) {
     width: 24px;
     height: 24px;
     object-fit: contain;
 }
 
-.social-icon i,
+.social-icon i{
+    font-size: 36px;
+}
+
 .contact-icon i {
     font-size: 24px;
 }
@@ -402,4 +422,22 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* 移动端响应式布局 */
+@media (max-width: 768px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .left-column {
+        position: relative;
+        top: 0;
+    }
+
+    .right-column {
+        overflow-y: visible;
+    }
 }
