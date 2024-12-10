@@ -3,11 +3,11 @@
     "title": "狄云的个人主页",
     "description": "狄云的个人主页 - 产品、设计与技术",
     "themeColor": "#ffffff",
-    "favicon": "favicon.ico",
+    "favicon": "images/avatar.webp",
     "language": "zh"
   },
   "profile": {
-    "avatar": "https://files.diyun.site/blog/2024/07/7fae6d19f5561324c078bebcfe19cbff.webp",
+    "avatar": "images/avatar.webp",
     "name": "狄云",
     "website": "https://diyun.site",
     "intro": "四体不勤，五谷不分。文不能测字，武不能防身。"
@@ -20,16 +20,16 @@
         "value": "fas fa-envelope"
       },
       "label": "Email",
-      "link": "mailto:your.email@example.com"
+      "link": "mailto:1218967186@qq.com"
     },
     {
       "type": "wechat",
       "icon": {
-        "type": "image",
-        "value": "path/to/wechat-icon.png"
+        "type": "font-awesome",
+        "value": "fab fa-weixin"
       },
       "label": "WeChat",
-      "qrcode": "path/to/qrcode.jpg"
+      "qrcode": "images/wechat.webp"
     }
   ],
   "social": [
@@ -39,51 +39,51 @@
         "type": "font-awesome",
         "value": "fab fa-github"
       },
-      "link": "https://github.com/yourusername"
+      "link": "https://github.com/DemoJ"
     },
     {
-      "platform": "weibo",
+      "platform": "zhihu",
       "icon": {
         "type": "font-awesome",
-        "value": "fab fa-weibo"
+        "value": "fab fa-zhihu"
       },
-      "link": "https://weibo.com/yourusername"
+      "link": "https://www.zhihu.com/people/jiangyuanchang"
     },
     {
-      "platform": "linkedin",
+      "platform": "jike",
       "icon": {
-        "type": "font-awesome",
-        "value": "fab fa-linkedin"
+        "type": "image",
+        "value": "images/jike.png"
       },
-      "link": "https://linkedin.com/in/yourusername"
+      "link": "https://okjk.co/n2zlCW"
     },
     {
-      "platform": "twitter",
+      "platform": "Linux.do",
       "icon": {
-        "type": "font-awesome",
-        "value": "fab fa-twitter"
+        "type": "image",
+        "value": "images/linuxdo.png"
       },
-      "link": "https://twitter.com/yourusername"
+      "link": "https://linux.do/u/diyun"
     }
   ],
   "portfolio": [
     {
-      "image": "project1.jpg",
-      "title": "项目名称 1",
-      "description": "这是项目1的第一行描述文字\n这是项目1的第二行描述文字",
-      "link": "https://project1.example.com"
+      "image": "images/ThinNav.jpg",
+      "title": "ThinNav",
+      "description": "ThinNav 是一个简单且轻量级的开源网址导航项目，自带后台管理系统",
+      "link": "https://github.com/DemoJ/ThinNav"
     },
     {
-      "image": "project2.jpg",
-      "title": "项目名称 2",
-      "description": "这是项目2的第一行描述文字\n这是项目2的第二行描述文字",
-      "link": "https://project2.example.com"
+      "image": "images/app_store.png",
+      "title": "App Store 评论获取工具",
+      "description": "抓取App store最新500条评论并使用AI进行竞品分析。",
+      "link": "https://app.diyun.site/"
     },
     {
-      "image": "project3.jpg",
-      "title": "项目名称 3",
-      "description": "这是项目3的第一行描述文字\n这是项目3的第二行描述文字",
-      "link": "https://project3.example.com"
+      "image": "images/ID_Page.png",
+      "title": "赛博名片",
+      "description": "使用闲置的serv00部署的赛博电子名片（关于我）",
+      "link": "https://diyun007.serv00.net/"
     }
   ]
 } 
