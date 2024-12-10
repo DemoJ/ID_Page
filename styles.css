@@ -75,6 +75,17 @@ body {
     font-size: 1rem;
 }
 
+/* 个人网站链接样式 */
+.subtitle a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.subtitle a:hover {
+    color: var(--accent-color);
+}
+
 .intro {
     font-size: 1rem;
     color: var(--secondary-color);

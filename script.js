@@ -91,7 +91,7 @@ function renderProfile(profile) {
             <img src="${profile.avatar}" alt="头像">
         </div>
         <h1>${profile.name}</h1>
-        <p class="subtitle">${profile.website}</p>
+        <p class="subtitle"><a href="${profile.website}" target="_blank">${profile.website}</a></p>
         <p class="intro">${profile.intro}</p>
     `;
 }
