@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "狄云的个人主页",
+    "description": "狄云的个人主页 - 产品、设计与技术",
+    "themeColor": "#ffffff",
+    "favicon": "favicon.ico",
+    "language": "zh"
+  },
+  "profile": {
+    "avatar": "https://files.diyun.site/blog/2024/07/7fae6d19f5561324c078bebcfe19cbff.webp",
+    "name": "狄云",
+    "website": "https://diyun.site",
+    "intro": "四体不勤，五谷不分。文不能测字，武不能防身。"
+  },
+  "contact": [
+    {
+      "type": "email",
+      "icon": {
+        "type": "font-awesome",
+        "value": "fas fa-envelope"
+      },
+      "label": "Email",
+      "link": "mailto:your.email@example.com"
+    },
+    {
+      "type": "wechat",
+      "icon": {
+        "type": "image",
+        "value": "path/to/wechat-icon.png"
+      },
+      "label": "WeChat",
+      "qrcode": "path/to/qrcode.jpg"
+    }
+  ],
+  "social": [
+    {
+      "platform": "github",
+      "icon": {
+        "type": "font-awesome",
+        "value": "fab fa-github"
+      },
+      "link": "https://github.com/yourusername"
+    },
+    {
+      "platform": "weibo",
+      "icon": {
+        "type": "font-awesome",
+        "value": "fab fa-weibo"
+      },
+      "link": "https://weibo.com/yourusername"
+    },
+    {
+      "platform": "linkedin",
+      "icon": {
+        "type": "font-awesome",
+        "value": "fab fa-linkedin"
+      },
+      "link": "https://linkedin.com/in/yourusername"
+    },
+    {
+      "platform": "twitter",
+      "icon": {
+        "type": "font-awesome",
+        "value": "fab fa-twitter"
+      },
+      "link": "https://twitter.com/yourusername"
+    }
+  ],
+  "portfolio": [
+    {
+      "image": "project1.jpg",
+      "title": "项目名称 1",
+      "description": "这是项目1的第一行描述文字\n这是项目1的第二行描述文字",
+      "link": "https://project1.example.com"
+    },
+    {
+      "image": "project2.jpg",
+      "title": "项目名称 2",
+      "description": "这是项目2的第一行描述文字\n这是项目2的第二行描述文字",
+      "link": "https://project2.example.com"
+    },
+    {
+      "image": "project3.jpg",
+      "title": "项目名称 3",
+      "description": "这是项目3的第一行描述文字\n这是项目3的第二行描述文字",
+      "link": "https://project3.example.com"
+    }
+  ]
+} 
