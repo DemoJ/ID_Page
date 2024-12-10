@@ -100,13 +100,19 @@ function renderContact(contacts) {
     const contactIcons = checkElement('.contact-icons', 'renderContact');
     if (!contactIcons) return;
     
-    contactIcons.innerHTML = contacts.map(contact => `
-        <a href="${contact.link}" class="contact-icon" ${contact.type === 'wechat' ? 'id="wechat"' : ''}>
-            ${renderIcon(contact.icon)}
-            <span>${contact.label}</span>
-            ${contact.qrcode ? `<img class="qr-code" src="${contact.qrcode}" style="display: none;">` : ''}
-        </a>
-    `).join('');
+    contactIcons.innerHTML = contacts.map(contact => {
+        const isWechat = contact.type === 'wechat';
+        const elementTag = isWechat ? 'div' : 'a';
+        const hrefAttr = !isWechat ? `href="${contact.link}"` : '';
+        
+        return `
+            <${elementTag} ${hrefAttr} class="contact-icon" ${isWechat ? 'id="wechat"' : ''}>
+                ${renderIcon(contact.icon)}
+                <span>${contact.label}</span>
+                ${contact.qrcode ? `<img class="qr-code" src="${contact.qrcode}" style="display: none;">` : ''}
+            </${elementTag}>
+        `;
+    }).join('');
 
     const wechatIcon = document.getElementById('wechat');
     if (wechatIcon) {
@@ -141,18 +147,16 @@ function handleImageError(img) {
     img.style.padding = '10px';
 }
 
-function renderPortfolio(projects) {
-    const projectContainer = document.querySelector('.project-container');
+function renderPortfolio(portfolio) {
+    const projectContainer = checkElement('.project-container', 'renderPortfolio');
     if (!projectContainer) return;
-    
-    projectContainer.innerHTML = projects.map(project => `
-        <div class="project" onclick="window.location.href='${project.link}'">
-            <img src="${project.image}" 
-                 alt="${project.title}" 
-                 onerror="handleImageError(this)">
-            <h3>${project.title}</h3>
-            <p class="project-desc">${project.description}</p>
-        </div>
+
+    projectContainer.innerHTML = portfolio.map(item => `
+        <a href="${item.link}" class="project" target="_blank">
+            <img src="${item.image}" alt="${item.title}" onerror="handleImageError(this)">
+            <h3 title="${item.title}">${item.title}</h3>
+            <div class="project-desc" title="${item.description}">${item.description}</div>
+        </a>
     `).join('');
 }
 

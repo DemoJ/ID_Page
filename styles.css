@@ -89,6 +89,7 @@ body {
 /* 联系方式样式调整 */
 #contact {
     margin-top: 3rem;
+    position: relative;  /* 添加相对定位 */
 }
 
 #contact h2 {
@@ -107,6 +108,42 @@ body {
     color: var(--primary-color);
     text-decoration: none;
     font-size: 1.4rem;
+    position: relative;
+    width: 24px;  /* 固定宽度 */
+    height: 24px; /* 固定高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon i {
+    font-size: 24px;
+}
+
+.contact-icon .qr-code {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    background-color: white;
+    padding: 8px;
+    overflow: visible;
+}
+
+.contact-icon .qr-code img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.contact-icon:hover .qr-code {
+    display: block;
 }
 
 .contact-icon span {
@@ -207,142 +244,27 @@ img {
     }
 }
 
-/* 作品展示部分样式调整 */
-.portfolio {
-    padding: 0;
-    width: 100%;
-    margin-bottom: 60px;
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
-    gap: 2rem;
-    justify-content: center;
-}
-
-.portfolio-item {
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    background: none;
-    transition: opacity 0.2s ease;
-}
-
-.portfolio-image {
-    width: 200px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-}
-
-.portfolio-item h3 {
-    width: 200px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--primary-color);
-    margin-bottom: 0.6rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left;
-}
-
-.portfolio-item p {
-    width: 200px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-align: left;
-}
-
-.portfolio-item:hover h3,
-.portfolio-item:hover p {
-    white-space: normal;
-    overflow: visible;
-    -webkit-line-clamp: unset;
-}
-
-/* 响应式优化 */
-@media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, 150px);
-    }
-    
-    .portfolio-image {
-        height: 80px;
-    }
-    
-    .portfolio-item h3 {
-        font-size: 1rem;
-    }
-}
-
-/* 添加标题样式 */
-.right-column h2, #contact h2 {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-}
-
-.title-cn {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--primary-color);
-}
-
-.title-en {
-    font-size: 1rem;
-    font-weight: normal;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* 调整联系方式标题样式 */
-#contact h2 .title-cn {
-    font-size: 1rem;
-    color: var(--primary-color);
-}
-
-#contact h2 .title-en {
-    font-size: 0.85rem;
-}
-
-/* 调整标题下方间距 */
-.right-column h2 {
-    margin-bottom: 2.5rem;
-}
-
+/* 修改 project 相关样式 */
 .project-container {
     display: grid;
-    grid-template-columns: repeat(3, 200px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     padding: 0;
     width: 100%;
-    justify-content: left;
+    margin-bottom: 60px;
 }
 
 .project {
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
-    padding: 0;
-    width: 200px;
+    width: 100%;
+    text-decoration: none;
 }
 
-/* 调整图片尺寸 */
 .project img {
-    width: 200px;
-    height: 100px;
+    width: 100%;
+    height: 120px;
     object-fit: cover;
     object-position: center;
     border-radius: 8px;
@@ -350,19 +272,18 @@ img {
 }
 
 .project h3 {
-    width: 200px;
     margin-top: 12px;
     margin-bottom: 8px;
-    text-align: left;
     font-size: 1.1rem;
+    font-weight: 500;
     color: var(--primary-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-decoration: none;
 }
 
 .project-desc {
-    width: 200px;
     font-size: 0.9rem;
     color: var(--secondary-color);
     line-height: 1.5;
@@ -372,20 +293,13 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
-    text-align: left;
+    text-decoration: none;
 }
 
-.project:hover h3,
-.project:hover .project-desc {
-    white-space: normal;
-    overflow: visible;
-    -webkit-line-clamp: unset;
-}
-
-/* 响应式调整 */
+/* 响应式布局调整 */
 @media (max-width: 768px) {
     .project-container {
-        grid-template-columns: repeat(2, 200px);
+        grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
 }
@@ -440,4 +354,64 @@ img {
     .right-column {
         overflow-y: visible;
     }
+}
+
+/* 添加新的 tooltip 样式 */
+.project h3,
+.project-desc {
+    position: relative;
+}
+
+/* 使用原生 title 属性作为 tooltip，确保鼠标悬停时显示完整内容 */
+.project h3[title]:hover::after,
+.project-desc[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100%;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: normal;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+/* 添加回标题样式 */
+.right-column h2, #contact h2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.title-cn {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.title-en {
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* 调整联系方式标题样式 */
+#contact h2 .title-cn {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+#contact h2 .title-en {
+    font-size: 0.85rem;
+}
+
+/* 调整标题下方间距 */
+.right-column h2 {
+    margin-bottom: 2.5rem;
 }
