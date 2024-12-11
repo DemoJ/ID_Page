@@ -20,7 +20,7 @@
         "value": "fas fa-envelope"
       },
       "label": "Email",
-      "link": "mailto:1218967186@qq.com"
+      "link": "mailto:diyun@diyun.site"
     },
     {
       "type": "wechat",
@@ -83,7 +83,7 @@
       "image": "images/ID_Page.png",
       "title": "赛博名片",
       "description": "使用闲置的serv00部署的赛博电子名片（关于我）",
-      "link": "https://diyun007.serv00.net/"
+      "link": "https://about.diyun.site"
     }
   ]
 } 
