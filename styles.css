@@ -5,7 +5,7 @@
     --text-light: #8895a7;
     --accent-color: #3498db;
     --accent-light: #5dade2;
-    --background-color: #f5f2ec;
+    --background-color: #f4f4f2;
 }
 
 * {
@@ -19,8 +19,8 @@ body {
     line-height: 1.6;
     color: var(--primary-color);
     background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(52, 152, 219, 0.05), transparent),
-        linear-gradient(180deg, #faf7f1 0%, var(--background-color) 35%);
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(52, 152, 219, 0.04), transparent),
+        linear-gradient(180deg, #f9f9f7 0%, var(--background-color) 35%);
     background-attachment: fixed;
     min-height: 100vh;
 }
@@ -275,7 +275,7 @@ img {
     object-fit: cover;
     object-position: center;
     border-radius: 8px;
-    background-color: #efece5;
+    background-color: #ececea;
     display: block;
     transition: transform 0.3s ease;
 }
