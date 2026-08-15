@@ -85,13 +85,15 @@ function renderMetadata(meta) {
 function renderProfile(profile) {
     const profileContent = checkElement('.profile-content', 'renderProfile');
     if (!profileContent) return;
-    
+
+    const websiteLabel = profile.website.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
     profileContent.innerHTML = `
         <div class="avatar">
             <img src="${profile.avatar}" alt="头像">
         </div>
         <h1>${profile.name}</h1>
-        <p class="subtitle"><a href="${profile.website}" target="_blank">${profile.website}</a></p>
+        <p class="subtitle"><a href="${profile.website}" target="_blank">${websiteLabel}</a></p>
         <p class="intro">${profile.intro}</p>
     `;
 }
@@ -99,28 +101,45 @@ function renderProfile(profile) {
 function renderContact(contacts) {
     const contactIcons = checkElement('.contact-icons', 'renderContact');
     if (!contactIcons) return;
-    
+
     contactIcons.innerHTML = contacts.map(contact => {
         const isWechat = contact.type === 'wechat';
         const elementTag = isWechat ? 'div' : 'a';
         const hrefAttr = !isWechat ? `href="${contact.link}"` : '';
-        
+
         return `
-            <${elementTag} ${hrefAttr} class="contact-icon" ${isWechat ? 'id="wechat"' : ''}>
+            <${elementTag} ${hrefAttr} class="contact-icon" ${isWechat ? 'id="wechat"' : ''} aria-label="${contact.label}">
                 ${renderIcon(contact.icon)}
                 <span>${contact.label}</span>
-                ${contact.qrcode ? `<img class="qr-code" src="${contact.qrcode}" style="display: none;">` : ''}
             </${elementTag}>
         `;
     }).join('');
 
+    const wechatContact = contacts.find(c => c.type === 'wechat' && c.qrcode);
     const wechatIcon = document.getElementById('wechat');
-    if (wechatIcon) {
-        const qrCode = wechatIcon.querySelector('.qr-code');
-        if (qrCode) {
-            wechatIcon.addEventListener('mouseenter', () => qrCode.style.display = 'block');
-            wechatIcon.addEventListener('mouseleave', () => qrCode.style.display = 'none');
-        }
+    if (wechatContact && wechatIcon) {
+        const qrCode = document.createElement('div');
+        qrCode.className = 'qr-code';
+        qrCode.innerHTML = `<img src="${wechatContact.qrcode}" alt="微信二维码">`;
+        document.body.appendChild(qrCode);
+
+        wechatIcon.addEventListener('mouseenter', () => {
+            const rect = wechatIcon.getBoundingClientRect();
+            const qrSize = 200;
+            const margin = 12;
+            let left = rect.left + rect.width / 2 - qrSize / 2;
+            left = Math.max(margin, Math.min(left, window.innerWidth - qrSize - margin));
+            let top = rect.bottom + margin;
+            if (top + qrSize > window.innerHeight - margin) {
+                top = rect.top - qrSize - margin;
+            }
+            qrCode.style.left = left + 'px';
+            qrCode.style.top = top + 'px';
+            qrCode.style.display = 'block';
+        });
+        wechatIcon.addEventListener('mouseleave', () => {
+            qrCode.style.display = 'none';
+        });
     }
 }
 
@@ -129,7 +148,7 @@ function renderSocial(socials) {
     if (!socialGrid) return;
     
     socialGrid.innerHTML = socials.map(social => `
-        <a href="${social.link}" target="_blank" class="social-card">
+        <a href="${social.link}" target="_blank" class="social-card" aria-label="${social.platform}">
             <div class="social-icon ${social.platform}">
                 ${renderIcon(social.icon)}
             </div>

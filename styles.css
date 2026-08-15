@@ -4,8 +4,8 @@
     --secondary-color: #505965;
     --text-light: #8895a7;
     --accent-color: #3498db;
-    --background-color: #ffffff;
-    --hover-color: #2980b9;
+    --accent-light: #5dade2;
+    --background-color: #f5f2ec;
 }
 
 * {
@@ -18,7 +18,10 @@ body {
     font-family: 'Noto Sans SC', sans-serif;
     line-height: 1.6;
     color: var(--primary-color);
-    background-color: var(--background-color);
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(52, 152, 219, 0.05), transparent),
+        linear-gradient(180deg, #faf7f1 0%, var(--background-color) 35%);
+    background-attachment: fixed;
     min-height: 100vh;
 }
 
@@ -42,7 +45,7 @@ body {
 
 /* 右侧栏样式 */
 .right-column {
-    overflow-y: auto;
+    min-width: 0;
 }
 
 /* 个人信息样式 */
@@ -52,8 +55,14 @@ body {
     margin-bottom: 2rem;
     border-radius: 50%;
     overflow: hidden;
-    border: none;
-    box-shadow: none;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(44, 62, 80, 0.16);
 }
 
 .avatar img {
@@ -79,28 +88,26 @@ body {
 .subtitle a {
     color: var(--secondary-color);
     text-decoration: none;
-    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
 }
 
 .subtitle a:hover {
     color: var(--accent-color);
+    border-bottom-color: var(--accent-light);
 }
 
 .intro {
     font-size: 1rem;
     color: var(--secondary-color);
-    line-height: 1.6;
+    line-height: 1.75;
     margin-bottom: 2rem;
 }
 
-.tags {
-    display: none;
-}
-
-/* 联系方式样式调整 */
+/* 联系方式样式 */
 #contact {
     margin-top: 3rem;
-    position: relative;  /* 添加相对定位 */
+    position: relative;
 }
 
 #contact h2 {
@@ -118,58 +125,68 @@ body {
 .contact-icon {
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 1.4rem;
     position: relative;
-    width: 24px;  /* 固定宽度 */
-    height: 24px; /* 固定高度 */
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-icon:hover {
+    color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
 .contact-icon i {
     font-size: 24px;
 }
 
-.contact-icon .qr-code {
+.qr-code {
     display: none;
-    position: absolute;
-    top: calc(100% + 1rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
     border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 9999;
     background-color: white;
     padding: 8px;
-    overflow: visible;
+    pointer-events: none;
+    animation: qr-fade-in 0.2s ease;
 }
 
-.contact-icon .qr-code img {
+@keyframes qr-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.qr-code img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-.contact-icon:hover .qr-code {
-    display: block;
 }
 
 .contact-icon span {
     display: none;
 }
 
-/* 右侧内容样式调整 */
+/* 右侧内容样式 */
 .right-column h2 {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--primary-color);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
-/* 社交媒体图标调整 */
+/* 社交媒体图标 */
 .social-grid {
     display: flex;
     gap: 2rem;
@@ -180,20 +197,12 @@ body {
     display: flex;
     text-decoration: none;
     color: var(--primary-color);
-    transition: color 0.3s ease;
-}
-
-.social-card:hover {
-    color: var(--accent-color);
-    transform: none;
-    box-shadow: none;
-    border-color: transparent;
 }
 
 .social-icon {
     width: 48px;
     height: 48px;
-    font-size: 2rem;
+    font-size: 36px;
     color: var(--primary-color);
     display: flex;
     align-items: center;
@@ -201,22 +210,36 @@ body {
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
+.social-icon i {
+    font-size: 36px;
+}
+
+.social-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
 .social-card:hover .social-icon {
     transform: translateY(-2px);
     color: var(--accent-color);
 }
 
-/* 删除社交卡片的多余样式 */
-.social-info {
-    display: none;
+/* 各平台品牌色 */
+.social-card:hover .social-icon.github {
+    color: #171515;
 }
 
-/* 高光时刻样式 */
-.highlights {
-    display: none;
+.social-card:hover .social-icon.zhihu {
+    color: #056de8;
 }
 
-/* 调整图片样式，确保图片正确显示 */
+.social-card:hover .social-icon img {
+    transform: scale(1.1);
+}
+
+/* 图片基础样式 */
 img {
     max-width: 100%;
     height: auto;
@@ -224,43 +247,11 @@ img {
     display: block;
 }
 
-/* 调整图片容器样式 */
-.image-container {
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 1rem;
-}
-
-/* 响应式设计 */
-@media (max-width: 1400px) {
-    .page-container {
-        max-width: 1200px;
-        gap: 6rem;
-    }
-}
-
-@media (max-width: 968px) {
-    .page-container {
-        padding: 3rem 2rem;
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    
-    .portfolio-grid {
-        gap: 2.5rem;
-    }
-    
-    .portfolio-image {
-        height: 120px;
-    }
-}
-
-/* 修改 project 相关样式 */
+/* 作品展示 */
 .project-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    padding: 0;
     width: 100%;
     margin-bottom: 60px;
 }
@@ -268,18 +259,29 @@ img {
 .project {
     position: relative;
     cursor: pointer;
-    transition: transform 0.3s ease;
     width: 100%;
     text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-3px);
 }
 
 .project img {
     width: 100%;
-    height: 120px;
+    aspect-ratio: 16 / 10;
+    height: auto;
     object-fit: cover;
     object-position: center;
     border-radius: 8px;
+    background-color: #efece5;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+.project:hover img {
+    transform: scale(1.03);
 }
 
 .project h3 {
@@ -291,7 +293,11 @@ img {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.project:hover h3 {
+    color: var(--accent-color);
 }
 
 .project-desc {
@@ -304,98 +310,16 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
-    text-decoration: none;
 }
 
-/* 响应式布局调整 */
-@media (max-width: 768px) {
-    .project-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-}
+/* tooltip 使用原生 title 属性，避免溢出容器 */
 
-@media (max-width: 480px) {
-    .project-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-.social-icon img{
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-}
-
-.contact-icon img:not(.qr-code) {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-.social-icon i{
-    font-size: 36px;
-}
-
-.contact-icon i {
-    font-size: 24px;
-}
-
-/* 确保图标垂直居中 */
-.social-icon,
-.contact-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* 移动端响应式布局 */
-@media (max-width: 768px) {
-    .page-container {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-        gap: 2rem;
-    }
-
-    .left-column {
-        position: relative;
-        top: 0;
-    }
-
-    .right-column {
-        overflow-y: visible;
-    }
-}
-
-/* 添加新的 tooltip 样式 */
-.project h3,
-.project-desc {
-    position: relative;
-}
-
-/* 使用原生 title 属性作为 tooltip，确保鼠标悬停时显示完整内容 */
-.project h3[title]:hover::after,
-.project-desc[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 100%;
-    padding: 5px 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: normal;
-    max-width: 300px;
-    z-index: 1000;
-}
-
-/* 添加回标题样式 */
-.right-column h2, #contact h2 {
+/* 中英文标题样式 */
+.right-column h2,
+#contact h2 {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.45rem;
 }
 
 .title-cn {
@@ -412,7 +336,6 @@ img {
     letter-spacing: 0.05em;
 }
 
-/* 调整联系方式标题样式 */
 #contact h2 .title-cn {
     font-size: 1rem;
     color: var(--primary-color);
@@ -422,7 +345,62 @@ img {
     font-size: 0.85rem;
 }
 
-/* 调整标题下方间距 */
-.right-column h2 {
-    margin-bottom: 2.5rem;
+/* 入场动画 */
+section {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 1400px) {
+    .page-container {
+        max-width: 1200px;
+        gap: 6rem;
+    }
+}
+
+@media (max-width: 968px) {
+    .page-container {
+        padding: 3rem 2rem;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .left-column {
+        position: relative;
+        top: 0;
+    }
+
+    .project-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-container {
+        grid-template-columns: 1fr;
+    }
 }
